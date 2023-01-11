@@ -1,9 +1,7 @@
 {
-  "jsonRecursiveSort": true,
-  "jsonSortOrder": ".prettierJSonSort.json",
   "semi": true,
   "singleQuote": true,
-  "trailingComma": "all",
+  "trailingComma": "es5",
   "tabWidth": 2,
   "bracketSpacing": true
 }

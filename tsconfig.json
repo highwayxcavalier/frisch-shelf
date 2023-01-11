@@ -1,4 +1,24 @@
 {
-  "compilerOptions": {},
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react-native",
+    "lib": ["ESNext"],
+    "noImplicitAny": true,
+    "outDir": "dist",
+    "paths": {
+      "@graphql/*": ["./app/graphql/*"],
+      "@hooks/*": ["./app/hooks/*"],
+      "@types/*": ["./app/types/*"],
+      "@ui/*": ["./app/ui/*"],
+      "@utils/*": ["./app/utils/*"]
+    },
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "ES5"
+  },
+  "exlude": ["node_modules"],
   "extends": "expo/tsconfig.base"
 }

@@ -1,0 +1,11 @@
+import { COLOR_PALLETES } from '../common/colorPalette';
+
+const ALL_COLORS = {
+  ...COLOR_PALLETES.PRIMARY,
+  ...COLOR_PALLETES.GRAY,
+  ...COLOR_PALLETES.YELLOW,
+};
+
+const BACKGROUND_COLOR = ALL_COLORS.GRAY_1000;
+
+export default { ...ALL_COLORS, BACKGROUND_COLOR };
