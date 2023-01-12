@@ -12,7 +12,6 @@ const DATA = [
 const tags = [{ text: 'Expired' }, { text: 'Expire soon' }, { text: 'Fridge' }];
 
 const CardList = () => {
-  console.log('HERE');
   return (
     <FlatList data={DATA} renderItem={() => <ProductCard tags={tags} />} />
   );

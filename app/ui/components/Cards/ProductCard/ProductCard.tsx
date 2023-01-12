@@ -6,7 +6,7 @@ import ChipList from '@ui/components/ChipList';
 import { ChipType } from '../../../../types/Chips';
 
 interface Props {
-  tags?: ChipType[];
+  tags: ChipType[];
   imageSource?: string;
   title?: string; // TODO: remove ?
 }

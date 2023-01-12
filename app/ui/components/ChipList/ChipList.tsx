@@ -5,19 +5,29 @@ import { ChipType } from '../../../types/Chips';
 import COLORS from '@ui/theme/color';
 
 interface Props {
-  chips?: ChipType[];
-  chipType?: 'flat' | 'outlined';
+  chips: ChipType[];
+  selected?: string;
+  onSelect?: (text: string) => void;
 }
 
-const ChipList = ({ chips }: Props) => {
+const ChipList = ({ chips, selected, onSelect }: Props) => {
   if (!chips) {
     return null;
   }
 
   return (
     <View style={styles.container}>
-      {chips.map((chip) => (
-        <Chip style={styles.chip}>{chip.text}</Chip>
+      {chips.map((chip, i) => (
+        <Chip
+          key={i}
+          style={[
+            styles.chip,
+            selected === chip.text ? styles.chipSelected : null,
+          ]}
+          onPress={() => onSelect?.(chip.text)}
+        >
+          {chip.text}
+        </Chip>
       ))}
     </View>
   );
@@ -33,7 +43,10 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     marginRight: 8,
     borderRadius: 40,
-    backgroundColor: COLORS.WHITE,
+    backgroundColor: COLORS.GRAY_100,
+  },
+  chipSelected: {
+    backgroundColor: COLORS.YELLOW_500,
   },
 });
 
