@@ -1,20 +1,35 @@
 import React from 'react';
-import { uniqueId } from 'lodash-es';
-import { View, StyleSheet, FlatList } from 'react-native';
+import { useQuery } from '@apollo/client';
+import { FlatList } from 'react-native';
 import { ProductCard } from '../Cards/ProductCard';
-
-const DATA = [
-  { id: uniqueId('card') },
-  { id: uniqueId('card') },
-  { id: uniqueId('card') },
-];
-
-const tags = [{ text: 'Expired' }, { text: 'Expire soon' }, { text: 'Fridge' }];
+import { QUERIES } from '@graphql/queries';
 
 const CardList = () => {
-  console.log('HERE');
+  const { GET_PRODUCTS } = QUERIES;
+  const { data, error, loading, previousData } = useQuery(GET_PRODUCTS, {
+    variables: {},
+    notifyOnNetworkStatusChange: true,
+    returnPartialData: true,
+  });
+  if (loading) {
+    console.log('LOADING...');
+    return null;
+  }
+
+  const result = data.products ?? previousData.products;
+
+  if (error) {
+    console.error(error.message);
+  }
+  console.log({ result });
+
   return (
-    <FlatList data={DATA} renderItem={() => <ProductCard tags={tags} />} />
+    <FlatList
+      data={result}
+      renderItem={({ item }) => (
+        <ProductCard tags={[...item.tags, item.storage]} title={item.name} />
+      )}
+    />
   );
 };
 

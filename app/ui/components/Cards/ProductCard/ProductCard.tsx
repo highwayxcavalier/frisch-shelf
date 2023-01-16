@@ -4,23 +4,32 @@ import COLORS from '@ui/theme/color';
 import { TYPOGRAPHY } from '@ui/common/typography';
 import ChipList from '@ui/components/ChipList';
 import { ChipType } from '../../../../types/Chips';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import { ICON_SIZE } from '@ui/common/iconSize';
 
 interface Props {
-  tags?: ChipType[];
+  tags: ChipType[];
   imageSource?: string;
-  title?: string; // TODO: remove ?
+  title: string;
+  imageURI?: string;
 }
 
-const ProductCard = ({ tags, title }: Props) => {
+const ProductCard = ({ tags, title, imageURI }: Props) => {
   return (
     <View style={styles.container}>
       <View style={styles.content}>
         <View style={styles.info}>
-          <Image
-            style={styles.image}
-            source={{ uri: 'https://via.placeholder.com/40.png' }}
-          />
-          <Text style={styles.title}>Hello World</Text>
+          {imageURI ? (
+            <Image style={styles.image} source={{ uri: imageURI }} />
+          ) : (
+            <MaterialCommunityIcons
+              name="food-apple"
+              size={ICON_SIZE.large}
+              color={COLORS.YELLOW_500}
+              style={styles.icon}
+            />
+          )}
+          <Text style={styles.title}>{title}</Text>
         </View>
         <ChipList chips={tags} />
       </View>
@@ -54,6 +63,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: 58,
     height: 58,
+  },
+  icon: {
+    marginRight: 12,
   },
 });
 

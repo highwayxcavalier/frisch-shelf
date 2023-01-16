@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import COLORS from '@ui/theme/color';
 import { ICON_SIZE } from '@ui/common/iconSize';
 import { PressableIcon } from '../Icons/PressableIcon';
+import ProductFormModal from '@ui/modals/ProductFormModal';
 
 const Footer = () => {
+  const [modalVisible, setModalVisible] = useState(false);
+
   return (
     <View style={styles.container}>
       <PressableIcon
@@ -25,6 +28,11 @@ const Footer = () => {
           hasBackground={true}
           backgroundColor={COLORS.YELLOW_500}
           color={COLORS.GRAY_500}
+          onPress={() => setModalVisible(true)}
+        />
+        <ProductFormModal
+          isVisible={modalVisible}
+          onClose={() => setModalVisible(false)}
         />
       </View>
 

@@ -23,7 +23,7 @@ import { HomeScreen } from '@ui/screens/HomeScreen';
 
 // Initialize Apollo Client
 const client = new ApolloClient({
-  uri: 'localhost:4000/graphql',
+  uri: 'http://192.168.0.211:8080/graphql',
   cache: new InMemoryCache(),
 });
 
