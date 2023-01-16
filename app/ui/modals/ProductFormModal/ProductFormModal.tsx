@@ -9,7 +9,7 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 interface Props {
   isVisible: boolean;
-  onClose?: ((event: NativeSyntheticEvent<any>) => void) | undefined;
+  onClose?: (() => void) | undefined;
 }
 
 const ProductFormModal = ({ isVisible, onClose }: Props) => {
@@ -27,7 +27,7 @@ const ProductFormModal = ({ isVisible, onClose }: Props) => {
               backgroundColor={COLORS.GRAY_500}
             />
           </View>
-          <ProductForm />
+          <ProductForm onClose={onClose} />
         </SafeAreaView>
       </SafeAreaProvider>
     </Modal>

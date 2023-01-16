@@ -5,7 +5,7 @@ import { ChipType } from '../../../types/Chips';
 import COLORS from '@ui/theme/color';
 
 interface Props {
-  chips: ChipType[];
+  chips: any[];
   selected?: string;
   onSelect?: (text: string) => void;
 }
@@ -14,19 +14,17 @@ const ChipList = ({ chips, selected, onSelect }: Props) => {
   if (!chips) {
     return null;
   }
+  console.log({ chips });
 
   return (
     <View style={styles.container}>
       {chips.map((chip, i) => (
         <Chip
           key={i}
-          style={[
-            styles.chip,
-            selected === chip.text ? styles.chipSelected : null,
-          ]}
+          style={[styles.chip, selected === chip ? styles.chipSelected : null]}
           onPress={() => onSelect?.(chip.text)}
         >
-          {chip.text}
+          {chip}
         </Chip>
       ))}
     </View>

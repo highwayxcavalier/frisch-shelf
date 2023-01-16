@@ -1,5 +1,12 @@
 import React from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from 'react-native';
 import COLORS from '@ui/theme/color';
 import { TYPOGRAPHY } from '@ui/common/typography';
 
@@ -7,20 +14,33 @@ interface Props {
   placeholder: string;
   label?: string;
   value: string;
-  onChange: React.Dispatch<React.SetStateAction<string>>;
+  onChange: () => void;
+  onFocus?: () => void;
+  isNumberPad?: boolean;
 }
 
-const Input = ({ label, value, placeholder, onChange }: Props) => {
+const Input = ({
+  label,
+  value,
+  placeholder,
+  onChange,
+  onFocus,
+  isNumberPad = false,
+}: Props) => {
   return (
-    <View>
-      <Text style={styles.label}>{label}</Text>
-      <TextInput
-        value={value}
-        placeholder={placeholder}
-        onChangeText={onChange}
-        style={styles.input}
-      />
-    </View>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+      <View>
+        {label && <Text style={styles.label}>{label}</Text>}
+        <TextInput
+          value={value}
+          placeholder={placeholder}
+          onChangeText={onChange}
+          style={styles.input}
+          keyboardType={isNumberPad ? 'number-pad' : 'default'}
+          onFocus={onFocus}
+        />
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
