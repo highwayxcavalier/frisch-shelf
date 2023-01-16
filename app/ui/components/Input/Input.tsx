@@ -17,6 +17,7 @@ interface Props {
   onChange: () => void;
   onFocus?: () => void;
   isNumberPad?: boolean;
+  isSmall?: boolean;
 }
 
 const Input = ({
@@ -26,10 +27,11 @@ const Input = ({
   onChange,
   onFocus,
   isNumberPad = false,
+  isSmall,
 }: Props) => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      <View>
+      <View style={isSmall ? styles.containerSmall : styles.container}>
         {label && <Text style={styles.label}>{label}</Text>}
         <TextInput
           value={value}
@@ -53,10 +55,17 @@ const styles = StyleSheet.create({
   input: {
     backgroundColor: COLORS.GRAY_500,
     borderRadius: 10,
-    padding: 10,
+    paddingVertical: 15,
+    paddingHorizontal: 10,
     marginBottom: 20,
     color: COLORS.GRAY_100,
     fontSize: TYPOGRAPHY.BODY.FONT_SIZE,
+  },
+  container: {
+    flex: 1,
+  },
+  containerSmall: {
+    flex: 0.5,
   },
 });
 

@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, ScrollView, Keyboard } from 'react-native';
+import React, { useState, useRef } from 'react';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import Input from '@ui/components/Input';
 import COLORS from '@ui/theme/color';
 import { TYPOGRAPHY } from '@ui/common/typography';
 import ChipList from '@ui/components/ChipList';
 import { storageTags } from '@utils/storageTags';
-import Buttons from './components/Buttons';
+import Buttons from '@ui/components/Buttons/ButtonsCTA';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
+import { measurementList } from './measurementList';
+import DropDownPicker from 'react-native-dropdown-picker';
 interface Props {
   onClose?: () => void;
 }
@@ -17,6 +19,9 @@ const ProductForm = ({ onClose }: Props) => {
   const [storage, setStorage] = useState<string | undefined>();
   const [date, setDate] = useState<Date>(new Date());
   const [isDisplayed, setIsDisplayed] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [measurement, setMeasurement] = useState('');
+  const [measurements, setMeasurements] = useState(measurementList);
 
   const handleSelectStorage = (newStorage: string) => {
     setStorage(newStorage !== storage ? newStorage : undefined);
@@ -43,12 +48,28 @@ const ProductForm = ({ onClose }: Props) => {
           onChange={() => setValue}
         />
         <Text style={styles.sectionTitle}>Quantity</Text>
-        <Input
-          placeholder="1"
-          value={quantity}
-          onChange={() => setQuantity}
-          isNumberPad
-        />
+        <View style={styles.quantitySection}>
+          <View style={styles.quantityInput}>
+            <Input
+              placeholder="1"
+              value={quantity}
+              onChange={() => setQuantity}
+              isNumberPad
+            />
+          </View>
+          <DropDownPicker
+            style={styles.dropdown}
+            open={modalVisible}
+            value={measurement}
+            items={measurements}
+            setOpen={setModalVisible}
+            setValue={setMeasurement}
+            setItems={setMeasurements}
+            textStyle={styles.dropdownText}
+            containerStyle={[styles.dropdownContainer]}
+            dropDownContainerStyle={styles.dropdown}
+          />
+        </View>
         <Text style={styles.sectionTitle}>Expiration date</Text>
         <Input
           placeholder="DD/MM/YYYY"
@@ -66,7 +87,7 @@ const ProductForm = ({ onClose }: Props) => {
           onSelect={handleSelectStorage}
         />
       </View>
-      <Buttons onSubmit={onSubmit} onClose={onClose} />
+      <Buttons buttonCTAText="Add" onSubmit={onSubmit} onClose={onClose} />
     </ScrollView>
   );
 };
@@ -81,6 +102,24 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     color: COLORS.GRAY_100,
     fontSize: TYPOGRAPHY.TITLE_1.FONT_SIZE,
+  },
+  quantitySection: {
+    flexDirection: 'row',
+    flex: 1,
+  },
+  quantityInput: {
+    flex: 1,
+    marginRight: 10,
+  },
+  dropdown: {
+    backgroundColor: COLORS.GRAY_500,
+    borderWidth: 0,
+  },
+  dropdownText: {
+    color: COLORS.GRAY_100,
+  },
+  dropdownContainer: {
+    flex: 0.5,
   },
 });
 

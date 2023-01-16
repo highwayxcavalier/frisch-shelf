@@ -1,10 +1,8 @@
-export const storageTags = [
-  {
-    text: 'fridge',
-  },
-  {
-    text: 'freezer',
-  },
-  { text: 'pantry' },
-  { text: 'cellar' },
+import { ChipType } from '../types/Chips';
+
+export const storageTags: ChipType[] = [
+  'fridge',
+  'freezer',
+  'pantry',
+  'cellar',
 ];

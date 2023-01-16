@@ -5,7 +5,7 @@ import { ChipType } from '../../../types/Chips';
 import COLORS from '@ui/theme/color';
 
 interface Props {
-  chips: any[];
+  chips: ChipType[];
   selected?: string;
   onSelect?: (text: string) => void;
 }
@@ -22,7 +22,7 @@ const ChipList = ({ chips, selected, onSelect }: Props) => {
         <Chip
           key={i}
           style={[styles.chip, selected === chip ? styles.chipSelected : null]}
-          onPress={() => onSelect?.(chip.text)}
+          onPress={() => onSelect?.(chip)}
         >
           {chip}
         </Chip>

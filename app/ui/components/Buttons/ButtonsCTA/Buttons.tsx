@@ -5,12 +5,13 @@ import { StyleSheet, View } from 'react-native';
 interface Props {
   onSubmit?: () => void;
   onClose?: () => void;
+  buttonCTAText: string;
 }
 
-const Buttons = ({ onSubmit, onClose }: Props) => {
+const Buttons = ({ onSubmit, onClose, buttonCTAText }: Props) => {
   return (
     <View style={styles.buttonContainer}>
-      <CustomButton text="Add" hasFullWidth onPress={onSubmit} />
+      <CustomButton text={buttonCTAText} hasFullWidth onPress={onSubmit} />
       <CustomButton text="Cancel" hasFullWidth isLight onPress={onClose} />
     </View>
   );
