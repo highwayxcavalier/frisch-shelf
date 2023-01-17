@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import Input from '@ui/components/Input';
 import COLORS from '@ui/theme/color';
@@ -9,8 +9,11 @@ import Buttons from '@ui/components/Buttons/ButtonsCTA';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 import { measurementList } from './measurementList';
 import DropDownPicker from 'react-native-dropdown-picker';
+import { useMutation } from '@apollo/client';
+import { MUTATIONS } from '@graphql/mutations';
+import { QUERIES } from '@graphql/queries';
 interface Props {
-  onClose?: () => void;
+  onClose: () => void;
 }
 
 const ProductForm = ({ onClose }: Props) => {
@@ -23,6 +26,22 @@ const ProductForm = ({ onClose }: Props) => {
   const [measurement, setMeasurement] = useState('');
   const [measurements, setMeasurements] = useState(measurementList);
 
+  const { ADD_PRODUCT } = MUTATIONS;
+  const { GET_PRODUCTS } = QUERIES;
+
+  const [addProduct, { loading, error }] = useMutation(ADD_PRODUCT, {
+    variables: {
+      name: value,
+      quantity: [quantity, measurement].join(' '),
+      storage,
+      expiration_date: date,
+    },
+    refetchQueries: [{ query: GET_PRODUCTS }, 'GetProducts'],
+  });
+
+  if (loading) return null;
+  if (error) throw new Error(`Submission error! ${error.message}`);
+
   const handleSelectStorage = (newStorage: string) => {
     setStorage(newStorage !== storage ? newStorage : undefined);
   };
@@ -34,7 +53,12 @@ const ProductForm = ({ onClose }: Props) => {
   };
 
   const onSubmit = () => {
-    console.log('PRESSED');
+    try {
+      addProduct();
+      onClose();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -45,7 +69,7 @@ const ProductForm = ({ onClose }: Props) => {
         <Input
           placeholder="Enter the food product name"
           value={value}
-          onChange={() => setValue}
+          onChange={(newValue: string) => setValue(newValue)}
         />
         <Text style={styles.sectionTitle}>Quantity</Text>
         <View style={styles.quantitySection}>
@@ -53,7 +77,7 @@ const ProductForm = ({ onClose }: Props) => {
             <Input
               placeholder="1"
               value={quantity}
-              onChange={() => setQuantity}
+              onChange={(newValue: string) => setQuantity(newValue)}
               isNumberPad
             />
           </View>

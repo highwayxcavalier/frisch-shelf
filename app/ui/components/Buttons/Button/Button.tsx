@@ -1,5 +1,11 @@
 import React from 'react';
-import { View, Pressable, Text, StyleSheet } from 'react-native';
+import {
+  View,
+  Pressable,
+  Text,
+  StyleSheet,
+  NativeSyntheticEvent,
+} from 'react-native';
 import COLORS from '@ui/theme/color';
 import { TYPOGRAPHY } from '@ui/common/typography';
 
@@ -8,7 +14,7 @@ interface Props {
   isDisabled?: boolean;
   isLight?: boolean;
   hasFullWidth?: boolean;
-  onPress?: () => void;
+  onPress: (() => void) | ((event: NativeSyntheticEvent<any>) => void);
 }
 
 const CustomButton = ({
@@ -18,7 +24,6 @@ const CustomButton = ({
   isLight = false,
   hasFullWidth = false,
 }: Props) => {
-  console.log('BUTTON');
   return (
     <Pressable
       disabled={isDisabled}

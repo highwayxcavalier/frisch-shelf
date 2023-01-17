@@ -1,5 +1,4 @@
 export const measurementList = [
-  { label: 'l', value: 'l' },
   { label: 'bag', value: 'bag' },
   { label: 'bottle', value: 'bottle' },
   { label: 'can', value: 'can' },
