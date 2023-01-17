@@ -1,5 +1,4 @@
 export type Measurement =
-  | 'l'
   | 'bag'
   | 'bottle'
   | 'can'

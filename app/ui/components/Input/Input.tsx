@@ -14,7 +14,7 @@ interface Props {
   placeholder: string;
   label?: string;
   value: string;
-  onChange: () => void;
+  onChange: (() => void) | ((value: string) => void);
   onFocus?: () => void;
   isNumberPad?: boolean;
   isSmall?: boolean;

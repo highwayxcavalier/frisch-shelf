@@ -1,10 +1,10 @@
 import CustomButton from '@ui/components/Buttons/Button';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { NativeSyntheticEvent, StyleSheet, View } from 'react-native';
 
 interface Props {
-  onSubmit?: () => void;
-  onClose?: () => void;
+  onSubmit: (() => void) | ((event: NativeSyntheticEvent<any>) => void);
+  onClose: () => void;
   buttonCTAText: string;
 }
 

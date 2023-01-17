@@ -14,7 +14,6 @@ const ChipList = ({ chips, selected, onSelect }: Props) => {
   if (!chips) {
     return null;
   }
-  console.log({ chips });
 
   return (
     <View style={styles.container}>
