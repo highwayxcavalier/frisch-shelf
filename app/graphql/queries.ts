@@ -7,6 +7,7 @@ const GET_PRODUCTS = gql`
       name
       tags
       storage
+      isExpired
     }
   }
 `;

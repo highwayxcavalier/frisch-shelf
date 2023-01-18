@@ -3,6 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import { Chip } from 'react-native-paper';
 import { ChipType } from '../../../types/Chips';
 import COLORS from '@ui/theme/color';
+import { ExpirationTagsEnum } from '@utils/storageTags';
 
 interface Props {
   chips: ChipType[];
@@ -20,7 +21,12 @@ const ChipList = ({ chips, selected, onSelect }: Props) => {
       {chips.map((chip, i) => (
         <Chip
           key={i}
-          style={[styles.chip, selected === chip ? styles.chipSelected : null]}
+          style={[
+            styles.chip,
+            selected === chip ? styles.chipSelected : null,
+            chip === ExpirationTagsEnum.EXPIRED && styles.expired,
+            chip === ExpirationTagsEnum.EXPIRE_SOON && styles.expireSoon,
+          ]}
           onPress={() => onSelect?.(chip)}
         >
           {chip}
@@ -44,6 +50,12 @@ const styles = StyleSheet.create({
   },
   chipSelected: {
     backgroundColor: COLORS.YELLOW_500,
+  },
+  expired: {
+    backgroundColor: COLORS.RED_1000,
+  },
+  expireSoon: {
+    backgroundColor: COLORS.ORANGE_1000,
   },
 });
 

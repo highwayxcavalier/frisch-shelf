@@ -4,7 +4,7 @@ import Input from '@ui/components/Input';
 import COLORS from '@ui/theme/color';
 import { TYPOGRAPHY } from '@ui/common/typography';
 import ChipList from '@ui/components/ChipList';
-import { storageTags } from '@utils/storageTags';
+import { getDateTags, storageTags } from '@utils/storageTags';
 import Buttons from '@ui/components/Buttons/ButtonsCTA';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 import { measurementList } from './measurementList';
@@ -12,6 +12,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import { useMutation } from '@apollo/client';
 import { MUTATIONS } from '@graphql/mutations';
 import { QUERIES } from '@graphql/queries';
+import isToday from 'date-fns/isToday';
 interface Props {
   onClose: () => void;
 }
@@ -35,6 +36,8 @@ const ProductForm = ({ onClose }: Props) => {
       quantity: [quantity, measurement].join(' '),
       storage,
       expiration_date: date,
+      isExpired: isToday(date),
+      tags: getDateTags(date),
     },
     refetchQueries: [{ query: GET_PRODUCTS }, 'GetProducts'],
   });

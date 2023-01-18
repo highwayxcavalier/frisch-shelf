@@ -1,29 +1,15 @@
 import React from 'react';
-import { useQuery } from '@apollo/client';
 import { FlatList } from 'react-native';
 import { ProductCard } from '../Cards/ProductCard';
-import { QUERIES } from '@graphql/queries';
 
-const CardList = () => {
-  const { GET_PRODUCTS } = QUERIES;
-  const { data, error, loading, previousData } = useQuery(GET_PRODUCTS, {
-    variables: {},
-    notifyOnNetworkStatusChange: true,
-  });
+interface Props {
+  data: any;
+}
 
-  if (loading) {
-    return null;
-  }
-
-  const result = data.products ?? previousData.products;
-
-  if (error) {
-    console.error(error.message);
-  }
-
+const CardList = ({ data }: Props) => {
   return (
     <FlatList
-      data={result}
+      data={data}
       renderItem={({ item }) => (
         <ProductCard tags={[...item.tags, item.storage]} title={item.name} />
       )}

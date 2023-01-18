@@ -6,6 +6,8 @@ const ADD_PRODUCT = gql`
     $quantity: String!
     $storage: String!
     $expiration_date: String!
+    $isExpired: Boolean!
+    $tags: [String]
   ) {
     addProduct(
       input: {
@@ -13,6 +15,8 @@ const ADD_PRODUCT = gql`
         quantity: $quantity
         storage: $storage
         expiration_date: $expiration_date
+        isExpired: $isExpired
+        tags: $tags
       }
     ) {
       id
@@ -21,7 +25,8 @@ const ADD_PRODUCT = gql`
       quantity
       storage
       tags
-      created_at
+      isExpired
+      tags
     }
   }
 `;
