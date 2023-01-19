@@ -8,6 +8,8 @@ const GET_PRODUCTS = gql`
       tags
       storage
       isExpired
+      expiration_date
+      quantity
     }
   }
 `;

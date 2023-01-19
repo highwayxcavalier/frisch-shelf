@@ -42,7 +42,6 @@ const HomeScreen = () => {
       <SafeAreaView>
         <Header />
         <View style={styles.container}>
-          <Text>Hello World</Text>
           <CardList data={result} />
         </View>
         <Footer />

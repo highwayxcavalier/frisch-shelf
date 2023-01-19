@@ -6,15 +6,24 @@ import ChipList from '@ui/components/ChipList';
 import { ChipType } from '../../../../types/Chips';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { ICON_SIZE } from '@ui/common/iconSize';
+import { formatDate } from '@utils/dates';
 
 interface Props {
   tags: ChipType[];
-  imageSource?: string;
   title: string;
   imageURI?: string;
+  quantity?: string;
+  expirationDate: string;
 }
 
-const ProductCard = ({ tags, title, imageURI }: Props) => {
+const ProductCard = ({
+  tags,
+  title,
+  imageURI,
+  quantity,
+  expirationDate,
+}: Props) => {
+  console.log({ quantity }, { expirationDate });
   return (
     <View style={styles.container}>
       <View style={styles.content}>
@@ -29,7 +38,11 @@ const ProductCard = ({ tags, title, imageURI }: Props) => {
               style={styles.icon}
             />
           )}
-          <Text style={styles.title}>{title}</Text>
+          <Text style={[styles.text, styles.title]}>{title}</Text>
+          <View style={styles.additionalData}>
+            <Text style={styles.text}>{quantity}</Text>
+            <Text style={styles.text}>{formatDate(expirationDate)}</Text>
+          </View>
         </View>
         <ChipList chips={tags} />
       </View>
@@ -51,12 +64,16 @@ const styles = StyleSheet.create({
   },
   info: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   title: {
     alignSelf: 'center',
     fontSize: TYPOGRAPHY.TITLE_3.FONT_SIZE,
     fontWeight: TYPOGRAPHY.HEADLINE.WEIGHT,
+  },
+  text: {
     color: COLORS.GRAY_100,
+    fontSize: TYPOGRAPHY.BODY.FONT_SIZE,
   },
   image: {
     marginRight: 12,
@@ -66,6 +83,11 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginRight: 12,
+  },
+  additionalData: {
+    flexDirection: 'column',
+    alignItems: 'flex-end',
+    justifyContent: 'space-around',
   },
 });
 

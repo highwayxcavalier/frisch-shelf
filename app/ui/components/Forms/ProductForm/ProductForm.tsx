@@ -13,6 +13,7 @@ import { useMutation } from '@apollo/client';
 import { MUTATIONS } from '@graphql/mutations';
 import { QUERIES } from '@graphql/queries';
 import isToday from 'date-fns/isToday';
+import format from 'date-fns/format';
 interface Props {
   onClose: () => void;
 }
@@ -35,7 +36,7 @@ const ProductForm = ({ onClose }: Props) => {
       name: value,
       quantity: [quantity, measurement].join(' '),
       storage,
-      expiration_date: date,
+      expiration_date: format(date, 'dd-MM-yyyy'),
       isExpired: isToday(date),
       tags: getDateTags(date),
     },

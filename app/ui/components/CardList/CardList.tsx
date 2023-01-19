@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, StyleSheet } from 'react-native';
 import { ProductCard } from '../Cards/ProductCard';
 
 interface Props {
@@ -11,7 +11,12 @@ const CardList = ({ data }: Props) => {
     <FlatList
       data={data}
       renderItem={({ item }) => (
-        <ProductCard tags={[...item.tags, item.storage]} title={item.name} />
+        <ProductCard
+          tags={[...item.tags, item.storage]}
+          title={item.name}
+          quantity={item.quantity}
+          expirationDate={item.expiration_date}
+        />
       )}
     />
   );
