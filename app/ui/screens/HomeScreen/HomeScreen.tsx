@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { Text, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import COLORS from '@ui/theme/color';
 import { Header } from '@ui/components/Header';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
