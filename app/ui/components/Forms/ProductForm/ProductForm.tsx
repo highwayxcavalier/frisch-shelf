@@ -14,6 +14,9 @@ import { MUTATIONS } from '@graphql/mutations';
 import { QUERIES } from '@graphql/queries';
 import isToday from 'date-fns/isToday';
 import format from 'date-fns/format';
+import { PressableIcon } from '@ui/components/Icons/PressableIcon';
+import { ICON_SIZE } from '@ui/common/iconSize';
+import BarcodeScannerModal from '@ui/modals/BarcodeScannerModal';
 interface Props {
   onClose: () => void;
 }
@@ -27,6 +30,7 @@ const ProductForm = ({ onClose }: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [measurement, setMeasurement] = useState('');
   const [measurements, setMeasurements] = useState(measurementList);
+  const [isBarcodeScannerOpen, setIsBarcodeScannerOpen] = useState(false);
 
   const { ADD_PRODUCT } = MUTATIONS;
   const { GET_PRODUCTS } = QUERIES;
@@ -75,6 +79,18 @@ const ProductForm = ({ onClose }: Props) => {
           value={value}
           onChange={(newValue: string) => setValue(newValue)}
         />
+        <PressableIcon
+          iconName="camera-sharp"
+          iconSize={ICON_SIZE['regular']}
+          color={COLORS.YELLOW_500}
+          hasBackground
+          backgroundColor={COLORS.GRAY_500}
+          onPress={() => setIsBarcodeScannerOpen(true)}
+        />
+        <BarcodeScannerModal
+          isVisible={isBarcodeScannerOpen}
+          onClose={() => setIsBarcodeScannerOpen(false)}
+        />
         <Text style={styles.sectionTitle}>Quantity</Text>
         <View style={styles.quantitySection}>
           <View style={styles.quantityInput}>
@@ -99,15 +115,12 @@ const ProductForm = ({ onClose }: Props) => {
           />
         </View>
         <Text style={styles.sectionTitle}>Expiration date</Text>
-        <Input
-          placeholder="DD/MM/YYYY"
-          value={date.toLocaleDateString()}
-          onChange={() => setDate(date)}
-          onFocus={() => setIsDisplayed(true)}
+        <RNDateTimePicker
+          minimumDate={new Date()}
+          mode="date"
+          value={date}
+          onChange={onDateChange}
         />
-        {isDisplayed && (
-          <RNDateTimePicker mode="date" value={date} onChange={onDateChange} />
-        )}
         <Text style={styles.sectionTitle}>Storage</Text>
         <ChipList
           chips={storageTags}
@@ -134,6 +147,9 @@ const styles = StyleSheet.create({
   quantitySection: {
     flexDirection: 'row',
     flex: 1,
+  },
+  datePicker: {
+    width: '100%',
   },
   quantityInput: {
     flex: 1,
