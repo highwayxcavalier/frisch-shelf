@@ -16,7 +16,7 @@ const GET_PRODUCTS = gql`
 
 const GET_FOOD_DATA = gql`
   query GetFoodData($barcode: String!) {
-    foodData(barcode: $$barcode) {
+    foodData(barcode: $barcode) {
       name
       imageUrl
     }
