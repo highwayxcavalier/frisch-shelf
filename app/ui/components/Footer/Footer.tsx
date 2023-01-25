@@ -63,6 +63,10 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
+    shadowColor: COLORS.GRAY_100,
+    shadowOffset: { width: 0, height: -1 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
 });
 

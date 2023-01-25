@@ -23,7 +23,6 @@ const ProductCard = ({
   quantity,
   expirationDate,
 }: Props) => {
-  console.log({ quantity }, { expirationDate });
   return (
     <View style={styles.container}>
       <View style={styles.content}>

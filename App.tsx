@@ -1,4 +1,3 @@
-import { StyleSheet } from 'react-native';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -23,7 +22,7 @@ import { HomeScreen } from '@ui/screens/HomeScreen';
 
 // Initialize Apollo Client
 const client = new ApolloClient({
-  uri: 'http://192.168.0.211:8080/graphql',
+  uri: 'https://tempeh.herokuapp.com/graphql',
   cache: new InMemoryCache(),
 });
 
