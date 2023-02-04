@@ -31,7 +31,7 @@ const Input = ({
 }: Props) => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      <View style={isSmall ? styles.containerSmall : styles.container}>
+      <View style={styles.container}>
         {label && <Text style={styles.label}>{label}</Text>}
         <TextInput
           value={value}
@@ -62,9 +62,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-  },
-  containerSmall: {
-    flex: 0.5,
   },
 });
 

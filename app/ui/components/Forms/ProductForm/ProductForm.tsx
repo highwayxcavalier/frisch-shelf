@@ -82,7 +82,7 @@ const ProductForm = ({ onClose }: Props) => {
               alignItems: 'stretch',
             }}
           >
-            <View style={styles.quantityInput}>
+            <View style={styles.input}>
               <Input
                 placeholder="Enter the food product name"
                 value={value}
@@ -105,11 +105,11 @@ const ProductForm = ({ onClose }: Props) => {
         <FormInputWrapper>
           <Text style={styles.sectionTitle}>Quantity</Text>
           <View style={styles.quantitySection}>
-            <View style={styles.quantityInput}>
+            <View style={[styles.input, styles.inputSmall]}>
               <Input
                 placeholder="1"
                 value={quantity}
-                onChange={(newValue: string) => setQuantity(newValue)}
+                onChange={setQuantity}
                 isNumberPad
               />
             </View>
@@ -134,6 +134,9 @@ const ProductForm = ({ onClose }: Props) => {
             mode="date"
             value={date}
             onChange={onDateChange}
+            textColor={COLORS.GRAY_100}
+            accentColor={COLORS.YELLOW_500}
+            themeVariant="dark"
           />
         </FormInputWrapper>
         <FormInputWrapper>
@@ -163,14 +166,16 @@ const styles = StyleSheet.create({
   },
   quantitySection: {
     flexDirection: 'row',
-    flex: 1,
   },
   datePicker: {
     width: '100%',
   },
-  quantityInput: {
-    flex: 1,
+  input: {
     marginRight: 10,
+    flex: 1,
+  },
+  inputSmall: {
+    flex: 0.5,
   },
   dropdown: {
     backgroundColor: COLORS.GRAY_500,
