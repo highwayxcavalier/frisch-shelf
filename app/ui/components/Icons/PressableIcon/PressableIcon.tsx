@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Ionicon } from '../../../../types/Ionicons';
+import { RootStackScreenProps } from '../../../../navigation/types';
 
 interface Props {
   iconName: Ionicon;
@@ -14,7 +15,10 @@ interface Props {
   color?: string;
   hasBackground?: boolean;
   backgroundColor?: string;
-  onPress?: (event: GestureResponderEvent) => void;
+  onPress?:
+    | ((event: GestureResponderEvent) => void)
+    | (() => void)
+    | (({ navigation }: RootStackScreenProps<'AddItem'>) => void);
 }
 
 const PressableIcon = ({
