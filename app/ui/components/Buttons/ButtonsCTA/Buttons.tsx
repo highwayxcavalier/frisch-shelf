@@ -6,12 +6,18 @@ interface Props {
   onSubmit: (() => void) | ((event: NativeSyntheticEvent<any>) => void);
   onClose: () => void;
   buttonCTAText: string;
+  isDisabled?: boolean;
 }
 
-const Buttons = ({ onSubmit, onClose, buttonCTAText }: Props) => {
+const Buttons = ({ onSubmit, onClose, buttonCTAText, isDisabled }: Props) => {
   return (
     <View style={styles.buttonContainer}>
-      <CustomButton text={buttonCTAText} hasFullWidth onPress={onSubmit} />
+      <CustomButton
+        text={buttonCTAText}
+        hasFullWidth
+        onPress={onSubmit}
+        isDisabled={isDisabled}
+      />
       <CustomButton text="Cancel" hasFullWidth isLight onPress={onClose} />
     </View>
   );

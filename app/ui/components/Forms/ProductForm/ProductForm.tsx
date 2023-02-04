@@ -48,6 +48,8 @@ const ProductForm = ({ onClose }: Props) => {
     refetchQueries: [{ query: GET_PRODUCTS }, 'GetProducts'],
   });
 
+  const isDataValid = !!value && !!storage && !!quantity && !!measurement;
+
   if (loading) return null;
   if (error) throw new Error(`Submission error! ${error.message}`);
 
@@ -148,7 +150,12 @@ const ProductForm = ({ onClose }: Props) => {
           />
         </FormInputWrapper>
       </View>
-      <Buttons buttonCTAText="Add" onSubmit={onSubmit} onClose={onClose} />
+      <Buttons
+        buttonCTAText="Add"
+        onSubmit={onSubmit}
+        onClose={onClose}
+        isDisabled={!isDataValid}
+      />
     </ScrollView>
   );
 };

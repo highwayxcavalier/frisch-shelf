@@ -30,6 +30,7 @@ const CustomButton = ({
       onPress={onPress}
       style={[
         styles.button,
+        isDisabled && styles.disabled,
         isLight && styles.buttonLight,
         hasFullWidth && styles.buttonFullWidth,
       ]}
@@ -57,6 +58,9 @@ const styles = StyleSheet.create({
   },
   buttonLight: {
     backgroundColor: COLORS.GRAY_100,
+  },
+  disabled: {
+    opacity: 0.5,
   },
 });
 
