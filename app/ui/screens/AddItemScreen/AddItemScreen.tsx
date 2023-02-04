@@ -20,7 +20,6 @@ const AddItemScreen = ({
           iconSize={ICON_SIZE['regular']}
           color={COLORS.GRAY_100}
           onPress={() => navigation.navigate('Home')}
-          hasBackground
           backgroundColor={COLORS.GRAY_500}
         />
       </View>

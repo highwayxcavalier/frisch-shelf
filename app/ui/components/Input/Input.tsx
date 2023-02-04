@@ -57,7 +57,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingVertical: 15,
     paddingHorizontal: 10,
-    marginBottom: 20,
     color: COLORS.GRAY_100,
     fontSize: TYPOGRAPHY.BODY.FONT_SIZE,
   },
