@@ -19,14 +19,13 @@ import {
   NunitoSans_900Black_Italic,
 } from '@expo-google-fonts/nunito-sans';
 import { HomeScreen } from '@ui/screens/HomeScreen';
+import { Navigation } from './app/navigation';
 
 // Initialize Apollo Client
 const client = new ApolloClient({
   uri: 'https://tempeh.herokuapp.com/graphql',
   cache: new InMemoryCache(),
 });
-
-const Stack = createNativeStackNavigator();
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -53,11 +52,12 @@ export default function App() {
 
   return (
     <ApolloProvider client={client}>
-      <NavigationContainer>
+      {/* <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Home" component={HomeScreen} />
         </Stack.Navigator>
-      </NavigationContainer>
+      </NavigationContainer> */}
+      <Navigation />
     </ApolloProvider>
   );
 }

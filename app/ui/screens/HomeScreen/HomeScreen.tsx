@@ -6,7 +6,6 @@ import { Header } from '@ui/components/Header';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { CardList } from '@ui/components/CardList';
 import { QUERIES } from '@graphql/queries';
-import { Footer } from '@ui/components/Footer';
 import { ExpirationTagsEnum } from '@utils/storageTags';
 import { ChipType } from '../../../types/Chips';
 
@@ -44,7 +43,6 @@ const HomeScreen = () => {
         <View style={styles.container}>
           <CardList data={result} />
         </View>
-        <Footer />
       </SafeAreaView>
     </SafeAreaProvider>
   );

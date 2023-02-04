@@ -16,7 +16,7 @@ import isToday from 'date-fns/isToday';
 import format from 'date-fns/format';
 import { PressableIcon } from '@ui/components/Icons/PressableIcon';
 import { ICON_SIZE } from '@ui/common/iconSize';
-import BarcodeScannerModal from '@ui/modals/BarcodeScannerModal';
+import BarcodeScannerModal from '@ui/components/Modals/BarcodeScannerModal';
 interface Props {
   onClose: () => void;
 }
