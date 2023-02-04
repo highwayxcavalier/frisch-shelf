@@ -17,6 +17,7 @@ import format from 'date-fns/format';
 import { PressableIcon } from '@ui/components/Icons/PressableIcon';
 import { ICON_SIZE } from '@ui/common/iconSize';
 import BarcodeScannerModal from '@ui/components/Modals/BarcodeScannerModal';
+import FormInputWrapper from '@ui/components/containers/FormInputWrapper.tsx/FormInputWrapper';
 interface Props {
   onClose: () => void;
 }
@@ -73,60 +74,79 @@ const ProductForm = ({ onClose }: Props) => {
     <ScrollView>
       <Text style={styles.title}>Add item</Text>
       <View>
-        <Text style={styles.sectionTitle}>Name</Text>
-        <Input
-          placeholder="Enter the food product name"
-          value={value}
-          onChange={(newValue: string) => setValue(newValue)}
-        />
-        <PressableIcon
-          iconName="camera-sharp"
-          iconSize={ICON_SIZE['regular']}
-          color={COLORS.YELLOW_500}
-          hasBackground
-          backgroundColor={COLORS.GRAY_500}
-          onPress={() => setIsBarcodeScannerOpen(true)}
-        />
-        <BarcodeScannerModal
-          isVisible={isBarcodeScannerOpen}
-          onClose={() => setIsBarcodeScannerOpen(false)}
-        />
-        <Text style={styles.sectionTitle}>Quantity</Text>
-        <View style={styles.quantitySection}>
-          <View style={styles.quantityInput}>
-            <Input
-              placeholder="1"
-              value={quantity}
-              onChange={(newValue: string) => setQuantity(newValue)}
-              isNumberPad
+        <FormInputWrapper>
+          <Text style={styles.sectionTitle}>Name</Text>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'stretch',
+            }}
+          >
+            <View style={styles.input}>
+              <Input
+                placeholder="Enter the food product name"
+                value={value}
+                onChange={(newValue: string) => setValue(newValue)}
+              />
+            </View>
+            <PressableIcon
+              iconName="camera-sharp"
+              iconSize={ICON_SIZE['regular']}
+              color={COLORS.YELLOW_500}
+              backgroundColor={COLORS.GRAY_500}
+              onPress={() => setIsBarcodeScannerOpen(true)}
             />
           </View>
-          <DropDownPicker
-            style={styles.dropdown}
-            open={modalVisible}
-            value={measurement}
-            items={measurements}
-            setOpen={setModalVisible}
-            setValue={setMeasurement}
-            setItems={setMeasurements}
-            textStyle={styles.dropdownText}
-            containerStyle={[styles.dropdownContainer]}
-            dropDownContainerStyle={styles.dropdown}
+          <BarcodeScannerModal
+            isVisible={isBarcodeScannerOpen}
+            onClose={() => setIsBarcodeScannerOpen(false)}
           />
-        </View>
-        <Text style={styles.sectionTitle}>Expiration date</Text>
-        <RNDateTimePicker
-          minimumDate={new Date()}
-          mode="date"
-          value={date}
-          onChange={onDateChange}
-        />
-        <Text style={styles.sectionTitle}>Storage</Text>
-        <ChipList
-          chips={storageTags}
-          selected={storage}
-          onSelect={handleSelectStorage}
-        />
+        </FormInputWrapper>
+        <FormInputWrapper>
+          <Text style={styles.sectionTitle}>Quantity</Text>
+          <View style={styles.quantitySection}>
+            <View style={[styles.input, styles.inputSmall]}>
+              <Input
+                placeholder="1"
+                value={quantity}
+                onChange={setQuantity}
+                isNumberPad
+              />
+            </View>
+            <DropDownPicker
+              style={styles.dropdown}
+              open={modalVisible}
+              value={measurement}
+              items={measurements}
+              setOpen={setModalVisible}
+              setValue={setMeasurement}
+              setItems={setMeasurements}
+              textStyle={styles.dropdownText}
+              containerStyle={[styles.dropdownContainer]}
+              dropDownContainerStyle={styles.dropdown}
+            />
+          </View>
+        </FormInputWrapper>
+        <FormInputWrapper>
+          <Text style={styles.sectionTitle}>Expiration date</Text>
+          <RNDateTimePicker
+            minimumDate={new Date()}
+            mode="date"
+            value={date}
+            onChange={onDateChange}
+            textColor={COLORS.GRAY_100}
+            accentColor={COLORS.YELLOW_500}
+            themeVariant="dark"
+          />
+        </FormInputWrapper>
+        <FormInputWrapper>
+          <Text style={styles.sectionTitle}>Storage</Text>
+          <ChipList
+            chips={storageTags}
+            selected={storage}
+            onSelect={handleSelectStorage}
+          />
+        </FormInputWrapper>
       </View>
       <Buttons buttonCTAText="Add" onSubmit={onSubmit} onClose={onClose} />
     </ScrollView>
@@ -135,7 +155,7 @@ const ProductForm = ({ onClose }: Props) => {
 
 const styles = StyleSheet.create({
   title: {
-    marginVertical: 30,
+    marginVertical: 20,
     color: COLORS.GRAY_100,
     fontSize: TYPOGRAPHY.LARGE_TITLE.FONT_SIZE,
   },
@@ -146,14 +166,16 @@ const styles = StyleSheet.create({
   },
   quantitySection: {
     flexDirection: 'row',
-    flex: 1,
   },
   datePicker: {
     width: '100%',
   },
-  quantityInput: {
-    flex: 1,
+  input: {
     marginRight: 10,
+    flex: 1,
+  },
+  inputSmall: {
+    flex: 0.5,
   },
   dropdown: {
     backgroundColor: COLORS.GRAY_500,

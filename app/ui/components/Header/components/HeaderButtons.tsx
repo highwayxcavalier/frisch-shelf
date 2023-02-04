@@ -10,7 +10,6 @@ const HeaderButtons = () => {
       <PressableIcon
         iconName="menu-sharp"
         iconSize={ICON_SIZE['regular']}
-        hasBackground
         backgroundColor={COLORS.GRAY_500}
         color={COLORS.GRAY_100}
       />
@@ -18,7 +17,6 @@ const HeaderButtons = () => {
         <PressableIcon
           iconName="filter-sharp"
           iconSize={ICON_SIZE['regular']}
-          hasBackground
           backgroundColor={COLORS.GRAY_500}
           color={COLORS.GRAY_100}
         />
@@ -26,7 +24,6 @@ const HeaderButtons = () => {
           <PressableIcon
             iconName="notifications-sharp"
             iconSize={ICON_SIZE['regular']}
-            hasBackground
             backgroundColor={COLORS.GRAY_500}
             color={COLORS.GRAY_100}
           />
