@@ -9,6 +9,7 @@ interface Props {
 const CardList = ({ data }: Props) => {
   return (
     <FlatList
+      style={{ flex: 1 }}
       data={data}
       renderItem={({ item }) => (
         <ProductCard
