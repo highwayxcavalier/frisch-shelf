@@ -1,15 +1,16 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { StyleSheet, View } from 'react-native';
-import COLORS from '@ui/theme/color';
 import { Header } from '@ui/components/Header';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { CardList } from '@ui/components/CardList';
 import { QUERIES } from '@graphql/queries';
 import { ExpirationTagsEnum } from '@utils/storageTags';
 import { ChipType } from '../../../types/Chips';
+import PageWrapper from '@ui/components/containers/PageWrapper';
+import { Title } from 'react-native-paper';
+import { RootTabScreenProps } from 'app/navigation/types';
 
-const HomeScreen = () => {
+const HomeScreen = ({ route }: RootTabScreenProps<'Home'>) => {
   const { GET_PRODUCTS } = QUERIES;
   const { data, error, loading, previousData } = useQuery(GET_PRODUCTS, {
     variables: {},
@@ -40,21 +41,13 @@ const HomeScreen = () => {
     <SafeAreaProvider>
       <SafeAreaView>
         <Header />
-        <View style={styles.container}>
+        <PageWrapper>
+          <Title>{route.name}</Title>
           <CardList data={result} />
-        </View>
+        </PageWrapper>
       </SafeAreaView>
     </SafeAreaProvider>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    position: 'relative',
-    backgroundColor: COLORS.GRAY_1000,
-    paddingHorizontal: 20,
-  },
-});
 
 export default HomeScreen;

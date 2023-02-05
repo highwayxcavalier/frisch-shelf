@@ -3,16 +3,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { HomeScreen } from '@ui/screens/HomeScreen';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import {
-  RootStackParamList,
-  RootStackScreenProps,
-  RootTabScreenProps,
-} from './types';
+import { RootTabScreenProps } from './types';
 import COLORS from '@ui/theme/color';
-import { PressableIcon } from '@ui/components/Icons/PressableIcon';
-import { ICON_SIZE } from '@ui/common/iconSize';
 import { Text, View } from 'react-native';
 import AddItemScreen from '@ui/screens/AddItemScreen';
+import ExpiredScreen from '@ui/screens/ExpiredScreen/ExpiredScreen';
 
 const Stack = createNativeStackNavigator();
 const FallbackScreen = ({ route }: RootTabScreenProps<'Home'>) => {
@@ -104,7 +99,7 @@ const BottomTabNavigation = () => {
 
       <BottomTab.Screen
         name="Expired"
-        component={FallbackScreen}
+        component={ExpiredScreen}
         options={({ navigation }: RootTabScreenProps<'Expired'>) => ({
           tabBarLabelStyle,
           tabBarIcon: ({ color }) => (
