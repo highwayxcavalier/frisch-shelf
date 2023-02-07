@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: 'NunitoSans_700Bold',
     fontSize: TYPOGRAPHY.LARGE_TITLE.FONT_SIZE,
-    color: COLORS.GRAY_100,
+    color: COLORS.WHITE,
     lineHeight: 42,
   },
   titleContainer: {

@@ -49,7 +49,7 @@ const Input = ({
 const styles = StyleSheet.create({
   label: {
     marginVertical: 10,
-    color: COLORS.GRAY_100,
+    color: COLORS.WHITE,
     fontSize: TYPOGRAPHY.BODY.FONT_SIZE,
   },
   input: {
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingVertical: 15,
     paddingHorizontal: 10,
-    color: COLORS.GRAY_100,
+    color: COLORS.WHITE,
     fontSize: TYPOGRAPHY.BODY.FONT_SIZE,
   },
   container: {

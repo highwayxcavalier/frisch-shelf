@@ -10,15 +10,19 @@ const GRAY = {
 };
 
 const YELLOW = {
-  YELLOW_500: '#FDDD5C',
+  YELLOW_MAIN: '#FDDD5C',
 };
 
 const RED = {
-  RED_1000: '#D22B2B',
+  RED_MAIN: '#D22B2B',
 };
 
 const ORANGE = {
-  ORANGE_1000: '#FFA500',
+  ORANGE_MAIN: '#FFA500',
+};
+
+const PURPLE = {
+  PURPLE_MAIN: '#8D5CFD',
 };
 
 export const COLOR_PALLETES = {
@@ -27,4 +31,5 @@ export const COLOR_PALLETES = {
   YELLOW,
   RED,
   ORANGE,
+  PURPLE,
 };

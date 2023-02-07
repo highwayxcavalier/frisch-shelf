@@ -23,7 +23,28 @@ const GET_FOOD_DATA = gql`
   }
 `;
 
+const GET_RECIPES = gql`
+  query GetRecipes($ingredients: [String!]) {
+    recipes(ingredients: $ingredients) {
+      label
+      image
+      ingredientsLines
+      ingredients {
+        food
+        quantity
+        measure
+      }
+      url
+      source
+      calories
+      totalTime
+      mealType
+    }
+  }
+`;
+
 export const QUERIES = {
   GET_PRODUCTS,
   GET_FOOD_DATA,
+  GET_RECIPES,
 };

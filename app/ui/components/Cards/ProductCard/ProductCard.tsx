@@ -9,7 +9,7 @@ import { ICON_SIZE } from '@ui/common/iconSize';
 import { formatDate } from '@utils/dates';
 
 interface Props {
-  tags: ChipType[];
+  tags?: ChipType[];
   title: string;
   imageURI?: string;
   quantity?: string;
@@ -33,7 +33,7 @@ const ProductCard = ({
             <MaterialCommunityIcons
               name="food-apple"
               size={ICON_SIZE.large}
-              color={COLORS.YELLOW_500}
+              color={COLORS.YELLOW_MAIN}
               style={styles.icon}
             />
           )}
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     fontWeight: TYPOGRAPHY.HEADLINE.WEIGHT,
   },
   text: {
-    color: COLORS.GRAY_100,
+    color: COLORS.WHITE,
     fontSize: TYPOGRAPHY.BODY.FONT_SIZE,
   },
   image: {

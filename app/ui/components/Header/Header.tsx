@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     maxHeight: 140,
     height: '100%',
     paddingVertical: 20,
-    backgroundColor: COLORS.GRAY_1000,
+    backgroundColor: COLORS.BLACK,
   },
 });
 
