@@ -9,6 +9,7 @@ import { Text, View } from 'react-native';
 import AddItemScreen from '@ui/screens/AddItemScreen';
 import ExpiredScreen from '@ui/screens/ExpiredScreen/ExpiredScreen';
 import RecipesScreen from '@ui/screens/RecipesScreen';
+import SingleRecipeScreen from '@ui/screens/SingleRecipeScreen';
 
 const Stack = createNativeStackNavigator();
 const FallbackScreen = ({ route }: RootTabScreenProps<'Home'>) => {
@@ -45,6 +46,7 @@ const RootNavigation = () => {
         screenOptions={{ headerShown: false, presentation: 'modal' }}
       >
         <Stack.Screen name="AddItem" component={AddItemScreen} />
+        <Stack.Screen name="SingleRecipe" component={SingleRecipeScreen} />
       </Stack.Group>
     </Stack.Navigator>
   );

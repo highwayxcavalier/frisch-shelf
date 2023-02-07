@@ -9,7 +9,10 @@ import { StyleSheet, Text } from 'react-native';
 import COLORS from '@ui/theme/color';
 import { TYPOGRAPHY } from '@ui/common/typography';
 
-const RecipesScreen = ({ route }: RootTabScreenProps<'Recipes'>) => {
+const RecipesScreen = ({
+  route,
+  navigation,
+}: RootTabScreenProps<'Recipes'>) => {
   const { GET_RECIPES, GET_PRODUCTS } = QUERIES;
   const productsQueryResult = useQuery(GET_PRODUCTS);
   const productsExpireSoon = productsQueryResult.data.products.filter(
@@ -38,7 +41,10 @@ const RecipesScreen = ({ route }: RootTabScreenProps<'Recipes'>) => {
     <PageWrapper>
       <Title>{route.name}</Title>
       {result ? (
-        <RecipesList data={result} />
+        <RecipesList
+          data={result}
+          onPress={() => navigation.navigate('SingleRecipe')}
+        />
       ) : (
         <Text style={styles.notAvailableText}>No recipes available</Text>
       )}

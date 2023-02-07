@@ -3,9 +3,13 @@ import {
   ImageSourcePropType,
   StyleSheet,
   Text,
+  TouchableOpacity,
+  TouchableOpacityProps,
   View,
 } from 'react-native';
 import COLORS from '@ui/theme/color';
+import { NavigationProp } from '@react-navigation/native';
+import { RootTabScreenProps } from 'app/navigation/types';
 
 interface Props {
   title: string;
@@ -22,9 +26,15 @@ const formatMealType = (mealType: string[]) => {
   return [singleType];
 };
 
-const RecipeCard = ({ title, imageURL, mealType, preparationTime }: Props) => {
+const RecipeCard = ({
+  title,
+  imageURL,
+  mealType,
+  preparationTime,
+  onPress,
+}: Props & TouchableOpacityProps) => {
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       {imageURL ? (
         <Image source={imageURL} style={styles.image} />
       ) : (
@@ -41,7 +51,7 @@ const RecipeCard = ({ title, imageURL, mealType, preparationTime }: Props) => {
           {preparationTime !== 0 ? `${preparationTime} min` : null}
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

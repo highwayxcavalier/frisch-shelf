@@ -4,9 +4,10 @@ import RecipeCard from '../Cards/RecipeCard';
 
 interface Props {
   data: Recipe[];
+  onPress: () => void;
 }
 
-const RecipesList = ({ data }: Props) => {
+const RecipesList = ({ data, onPress }: Props) => {
   return (
     <FlatList
       style={{ flex: 1 }}
@@ -17,6 +18,7 @@ const RecipesList = ({ data }: Props) => {
           imageURL={{ uri: item.image }}
           mealType={item.mealType}
           preparationTime={item.totalTime}
+          onPress={onPress}
         />
       )}
       horizontal={false}
