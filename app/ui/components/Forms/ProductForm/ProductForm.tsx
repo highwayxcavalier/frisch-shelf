@@ -5,7 +5,6 @@ import COLORS from '@ui/theme/color';
 import { TYPOGRAPHY } from '@ui/common/typography';
 import ChipList from '@ui/components/ChipList';
 import { getDateTags, storageTags } from '@utils/storageTags';
-import Buttons from '@ui/components/Buttons/ButtonsCTA';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 import { measurementList } from './measurementList';
 import DropDownPicker from 'react-native-dropdown-picker';

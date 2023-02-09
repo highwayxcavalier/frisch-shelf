@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     position: 'relative',
-    backgroundColor: COLORS.BLACK,
+    backgroundColor: COLORS.BACKGROUND_COLOR,
     paddingHorizontal: 20,
     paddingVertical: 30,
   },

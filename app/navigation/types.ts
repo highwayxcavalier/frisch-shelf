@@ -11,7 +11,7 @@ export type RootTabParamList = {
   Expired: undefined;
   User: undefined;
   AddItemScreen: undefined;
-  SingleRecipeScreen: undefined;
+  SingleRecipeScreen: { uri: string };
 };
 
 export type RootStackParamList = {

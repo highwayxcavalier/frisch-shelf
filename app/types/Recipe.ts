@@ -8,6 +8,7 @@ export interface Recipe {
   calories: number;
   totalTime: number;
   mealType: string[];
+  uri: string;
 }
 
 interface Ingredient {

@@ -46,7 +46,10 @@ const RootNavigation = () => {
         screenOptions={{ headerShown: false, presentation: 'modal' }}
       >
         <Stack.Screen name="AddItem" component={AddItemScreen} />
-        <Stack.Screen name="SingleRecipe" component={SingleRecipeScreen} />
+        <Stack.Screen
+          name="SingleRecipeScreen"
+          component={SingleRecipeScreen}
+        />
       </Stack.Group>
     </Stack.Navigator>
   );

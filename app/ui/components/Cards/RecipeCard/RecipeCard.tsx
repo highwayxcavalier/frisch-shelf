@@ -10,6 +10,9 @@ import {
 import COLORS from '@ui/theme/color';
 import { NavigationProp } from '@react-navigation/native';
 import { RootTabScreenProps } from 'app/navigation/types';
+import { formatMealType } from '@utils/formatter';
+import { TYPOGRAPHY } from '@ui/common/typography';
+import Tag from '@ui/components/Tag';
 
 interface Props {
   title: string;
@@ -17,14 +20,6 @@ interface Props {
   mealType: string[];
   preparationTime: number;
 }
-
-const formatMealType = (mealType: string[]) => {
-  if (mealType[0] === 'lunch/dinner') return ['Lunch', 'Dinner'];
-
-  const singleType =
-    mealType[0].charAt(0).toUpperCase() + mealType[0].slice(1).toLowerCase();
-  return [singleType];
-};
 
 const RecipeCard = ({
   title,
@@ -41,11 +36,11 @@ const RecipeCard = ({
         <View style={[styles.image, styles.fallbackImage]}></View>
       )}
       <View style={styles.textContainer}>
-        {formatMealType(mealType).map((type) => (
-          <View style={styles.mealTypeContainer}>
-            <Text style={styles.mealType}>{type}</Text>
-          </View>
-        ))}
+        <View style={styles.mealTypeContainer}>
+          {formatMealType(mealType).map((type) => (
+            <Tag text={type} />
+          ))}
+        </View>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.preparationTime}>
           {preparationTime !== 0 ? `${preparationTime} min` : null}
@@ -64,8 +59,8 @@ const styles = StyleSheet.create({
     height: 320,
   },
   textContainer: {
-    marginHorizontal: 20,
-    paddingVertical: 15,
+    marginHorizontal: 15,
+    marginTop: 15,
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
@@ -85,20 +80,14 @@ const styles = StyleSheet.create({
     fontSize: 17,
     color: COLORS.WHITE,
   },
-  mealType: {
-    fontSize: 13,
-    color: COLORS.WHITE,
-  },
   mealTypeContainer: {
     flexDirection: 'row',
-    backgroundColor: COLORS.PURPLE_MAIN,
-    padding: 5,
-    borderRadius: 5,
   },
   preparationTime: {
     fontSize: 13,
     color: COLORS.WHITE,
     opacity: 0.75,
+    fontWeight: TYPOGRAPHY.HEADLINE.WEIGHT,
   },
 });
 

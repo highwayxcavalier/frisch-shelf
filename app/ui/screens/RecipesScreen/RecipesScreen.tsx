@@ -43,7 +43,11 @@ const RecipesScreen = ({
       {result ? (
         <RecipesList
           data={result}
-          onPress={() => navigation.navigate('SingleRecipe')}
+          onCardOpen={(uri: string) =>
+            navigation.navigate('SingleRecipeScreen', {
+              uri,
+            })
+          }
         />
       ) : (
         <Text style={styles.notAvailableText}>No recipes available</Text>
