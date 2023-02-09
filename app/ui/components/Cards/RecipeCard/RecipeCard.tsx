@@ -63,7 +63,6 @@ const styles = StyleSheet.create({
     marginTop: 15,
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'space-between',
     maxHeight: 110,
   },
   image: {
@@ -82,6 +81,7 @@ const styles = StyleSheet.create({
   },
   mealTypeContainer: {
     flexDirection: 'row',
+    marginBottom: 10,
   },
   preparationTime: {
     fontSize: 13,
