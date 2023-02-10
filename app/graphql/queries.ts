@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 const GET_PRODUCTS = gql`
-  query GetProducts {
-    products {
+  query GetProducts($isExpiringSoon: Boolean) {
+    products(isExpiringSoon: $isExpiringSoon) {
       id
       name
       tags

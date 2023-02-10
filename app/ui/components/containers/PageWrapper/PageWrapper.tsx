@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     flex: 1,
     position: 'relative',
     backgroundColor: COLORS.BACKGROUND_COLOR,
-    paddingHorizontal: 20,
+    paddingHorizontal: 15,
     paddingVertical: 30,
   },
 });

@@ -28,7 +28,7 @@ const ProductForm = ({ onClose }: Props) => {
   const [storage, setStorage] = useState<string | undefined>();
   const [date, setDate] = useState<Date>(new Date());
   const [isDisplayed, setIsDisplayed] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
+  const [pickerVisible, setPickerVisible] = useState(false);
   const [measurement, setMeasurement] = useState('');
   const [measurements, setMeasurements] = useState(measurementList);
   const [isBarcodeScannerOpen, setIsBarcodeScannerOpen] = useState(false);
@@ -47,6 +47,8 @@ const ProductForm = ({ onClose }: Props) => {
     },
     refetchQueries: [{ query: GET_PRODUCTS }, 'GetProducts'],
   });
+
+  DropDownPicker.setListMode('SCROLLVIEW');
 
   const isDataValid = !!value && !!storage && !!quantity && !!measurement;
 
@@ -117,10 +119,10 @@ const ProductForm = ({ onClose }: Props) => {
             </View>
             <DropDownPicker
               style={styles.dropdown}
-              open={modalVisible}
+              open={pickerVisible}
               value={measurement}
               items={measurements}
-              setOpen={setModalVisible}
+              setOpen={setPickerVisible}
               setValue={setMeasurement}
               setItems={setMeasurements}
               textStyle={styles.dropdownText}

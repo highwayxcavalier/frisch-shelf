@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     marginRight: 8,
     borderRadius: 40,
-    backgroundColor: COLORS.WHITE,
+    backgroundColor: COLORS.PURPLE_MAIN,
   },
   chipSelected: {
     backgroundColor: COLORS.YELLOW_MAIN,

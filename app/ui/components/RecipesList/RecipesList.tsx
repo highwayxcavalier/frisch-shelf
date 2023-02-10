@@ -10,7 +10,6 @@ interface Props {
 const RecipesList = ({ data, onCardOpen }: Props) => {
   return (
     <FlatList
-      style={{ flex: 1 }}
       data={data}
       renderItem={({ item }) => (
         <RecipeCard

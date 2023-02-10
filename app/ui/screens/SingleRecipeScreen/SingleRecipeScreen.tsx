@@ -64,7 +64,6 @@ const SingleRecipeScreen = ({
                 <Tag text={type} />
               ))}
             </View>
-
             <Text style={styles.title}>{result.label}</Text>
             <Text style={styles.text}>
               Full recipe at{' '}
