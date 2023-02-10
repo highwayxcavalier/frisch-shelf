@@ -9,6 +9,8 @@ import { ChipType } from '../../../types/Chips';
 import PageWrapper from '@ui/components/containers/PageWrapper';
 import { Title } from 'react-native-paper';
 import { RootTabScreenProps } from 'app/navigation/types';
+import { StyleSheet } from 'react-native';
+import COLORS from '@ui/theme/color';
 
 const HomeScreen = ({ route }: RootTabScreenProps<'Home'>) => {
   const { GET_PRODUCTS } = QUERIES;
@@ -39,7 +41,7 @@ const HomeScreen = ({ route }: RootTabScreenProps<'Home'>) => {
   }
   return (
     <SafeAreaProvider>
-      <SafeAreaView>
+      <SafeAreaView style={styles.container}>
         <Header />
         <PageWrapper>
           <Title>{route.name}</Title>
@@ -49,5 +51,11 @@ const HomeScreen = ({ route }: RootTabScreenProps<'Home'>) => {
     </SafeAreaProvider>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: COLORS.BACKGROUND_COLOR,
+  },
+});
 
 export default HomeScreen;

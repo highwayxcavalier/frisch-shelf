@@ -8,13 +8,15 @@ import COLORS from '@ui/theme/color';
 import { Text, View } from 'react-native';
 import AddItemScreen from '@ui/screens/AddItemScreen';
 import ExpiredScreen from '@ui/screens/ExpiredScreen/ExpiredScreen';
+import RecipesScreen from '@ui/screens/RecipesScreen';
+import SingleRecipeScreen from '@ui/screens/SingleRecipeScreen';
 
 const Stack = createNativeStackNavigator();
 const FallbackScreen = ({ route }: RootTabScreenProps<'Home'>) => {
   return (
     <View
       style={{
-        backgroundColor: COLORS.GRAY_1000,
+        backgroundColor: COLORS.BLACK,
         flex: 1,
         paddingHorizontal: 20,
       }}
@@ -44,6 +46,10 @@ const RootNavigation = () => {
         screenOptions={{ headerShown: false, presentation: 'modal' }}
       >
         <Stack.Screen name="AddItem" component={AddItemScreen} />
+        <Stack.Screen
+          name="SingleRecipeScreen"
+          component={SingleRecipeScreen}
+        />
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -57,7 +63,7 @@ const BottomTabNavigation = () => {
       initialRouteName="Home"
       screenOptions={{
         tabBarInactiveTintColor: COLORS.GRAY_100,
-        tabBarActiveTintColor: COLORS.YELLOW_500,
+        tabBarActiveTintColor: COLORS.YELLOW_MAIN,
         headerShown: false,
         tabBarStyle: { backgroundColor: COLORS.GRAY_500 },
       }}
@@ -74,7 +80,7 @@ const BottomTabNavigation = () => {
       />
       <BottomTab.Screen
         name="Recipes"
-        component={FallbackScreen}
+        component={RecipesScreen}
         options={({ navigation }: RootTabScreenProps<'Recipes'>) => ({
           tabBarLabelStyle,
           tabBarIcon: ({ color }) => (

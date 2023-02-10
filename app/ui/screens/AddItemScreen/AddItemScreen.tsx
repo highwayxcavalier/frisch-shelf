@@ -18,7 +18,7 @@ const AddItemScreen = ({
         <PressableIcon
           iconName="close-sharp"
           iconSize={ICON_SIZE['regular']}
-          color={COLORS.GRAY_100}
+          color={COLORS.WHITE}
           onPress={() => navigation.navigate('Home')}
           backgroundColor={COLORS.GRAY_500}
         />
@@ -31,7 +31,7 @@ const AddItemScreen = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.GRAY_1000,
+    backgroundColor: COLORS.BLACK,
     padding: 20,
   },
   icon: {

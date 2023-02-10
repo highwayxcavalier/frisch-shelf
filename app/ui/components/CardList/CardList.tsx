@@ -1,9 +1,10 @@
+import { Product } from '../../../types/Product';
 import React from 'react';
-import { FlatList, StyleSheet } from 'react-native';
+import { FlatList } from 'react-native';
 import { ProductCard } from '../Cards/ProductCard';
 
 interface Props {
-  data: any;
+  data: Product[];
 }
 
 const CardList = ({ data }: Props) => {
@@ -19,6 +20,7 @@ const CardList = ({ data }: Props) => {
           expirationDate={item.expiration_date}
         />
       )}
+      keyExtractor={(item) => item.id}
     />
   );
 };

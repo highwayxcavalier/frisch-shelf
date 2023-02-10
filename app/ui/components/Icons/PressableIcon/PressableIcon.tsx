@@ -1,23 +1,13 @@
 import React from 'react';
-import {
-  GestureResponderEvent,
-  Pressable,
-  View,
-  StyleSheet,
-} from 'react-native';
+import { Pressable, StyleSheet, PressableProps } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Ionicon } from '../../../../types/Ionicons';
-import { RootStackScreenProps } from '../../../../navigation/types';
 
 interface Props {
   iconName: Ionicon;
   iconSize?: number;
   color?: string;
   backgroundColor?: string;
-  onPress?:
-    | ((event: GestureResponderEvent) => void)
-    | (() => void)
-    | (({ navigation }: RootStackScreenProps<'AddItem'>) => void);
 }
 
 const PressableIcon = ({
@@ -26,7 +16,7 @@ const PressableIcon = ({
   color,
   onPress,
   backgroundColor,
-}: Props) => {
+}: Props & PressableProps) => {
   return (
     <Pressable onPress={onPress} style={styles(backgroundColor).button}>
       <Ionicons name={iconName} size={iconSize} color={color} />

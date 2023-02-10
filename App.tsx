@@ -1,6 +1,4 @@
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {
   useFonts,
   NunitoSans_200ExtraLight,
@@ -18,11 +16,10 @@ import {
   NunitoSans_900Black,
   NunitoSans_900Black_Italic,
 } from '@expo-google-fonts/nunito-sans';
-import { HomeScreen } from '@ui/screens/HomeScreen';
 import { Navigation } from './app/navigation';
 
 // Initialize Apollo Client
-const client = new ApolloClient({
+export const client = new ApolloClient({
   uri: 'https://tempeh.herokuapp.com/graphql',
   cache: new InMemoryCache(),
 });
@@ -52,11 +49,6 @@ export default function App() {
 
   return (
     <ApolloProvider client={client}>
-      {/* <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Home" component={HomeScreen} />
-        </Stack.Navigator>
-      </NavigationContainer> */}
       <Navigation />
     </ApolloProvider>
   );

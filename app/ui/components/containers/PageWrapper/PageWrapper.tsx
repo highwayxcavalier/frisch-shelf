@@ -9,8 +9,8 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     position: 'relative',
-    backgroundColor: COLORS.GRAY_1000,
-    paddingHorizontal: 20,
+    backgroundColor: COLORS.BACKGROUND_COLOR,
+    paddingHorizontal: 15,
     paddingVertical: 30,
   },
 });

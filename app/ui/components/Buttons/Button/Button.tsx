@@ -47,14 +47,14 @@ const styles = StyleSheet.create({
   button: {
     padding: 15,
     borderRadius: 10,
-    backgroundColor: COLORS.YELLOW_500,
+    backgroundColor: COLORS.YELLOW_MAIN,
     marginVertical: 10,
     alignItems: 'center',
   },
   text: {
     fontSize: TYPOGRAPHY.TITLE_2.FONT_SIZE,
     fontWeight: TYPOGRAPHY.HEADLINE.WEIGHT,
-    color: COLORS.GRAY_1000,
+    color: COLORS.BLACK,
   },
   buttonLight: {
     backgroundColor: COLORS.GRAY_100,

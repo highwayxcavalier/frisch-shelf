@@ -6,7 +6,7 @@ import COLORS from '@ui/theme/color';
 import { ExpirationTagsEnum } from '@utils/storageTags';
 
 interface Props {
-  chips: ChipType[];
+  chips?: ChipType[];
   selected?: string;
   onSelect?: (text: string) => void;
 }
@@ -46,16 +46,16 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     marginRight: 8,
     borderRadius: 40,
-    backgroundColor: COLORS.GRAY_100,
+    backgroundColor: COLORS.PURPLE_MAIN,
   },
   chipSelected: {
-    backgroundColor: COLORS.YELLOW_500,
+    backgroundColor: COLORS.YELLOW_MAIN,
   },
   expired: {
-    backgroundColor: COLORS.RED_1000,
+    backgroundColor: COLORS.RED_MAIN,
   },
   expireSoon: {
-    backgroundColor: COLORS.ORANGE_1000,
+    backgroundColor: COLORS.ORANGE_MAIN,
   },
 });
 

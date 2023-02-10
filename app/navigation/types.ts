@@ -11,11 +11,13 @@ export type RootTabParamList = {
   Expired: undefined;
   User: undefined;
   AddItemScreen: undefined;
+  SingleRecipeScreen: { uri: string };
 };
 
 export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | { title: string };
   AddItem: undefined;
+  SingleRecipe: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
