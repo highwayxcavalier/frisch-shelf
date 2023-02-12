@@ -1,28 +1,15 @@
 import PageWrapper from '@ui/components/containers/PageWrapper';
 import RecipesList from '@ui/components/RecipesList';
 import { RootTabScreenProps } from 'app/navigation/types';
-import { Title } from 'react-native-paper';
 import { QUERIES } from '@graphql/queries';
-import { useQuery } from '@apollo/client';
+import { useLazyQuery, useQuery } from '@apollo/client';
 import { Product } from '../../../types/Product';
 import { StyleSheet, Text, View } from 'react-native';
 import COLORS from '@ui/theme/color';
 import { TYPOGRAPHY } from '@ui/common/typography';
 import DropDownPicker, { ItemType } from 'react-native-dropdown-picker';
 import { useEffect, useState } from 'react';
-
-const createPickerItems = (items: Product[]) => {
-  const pickerItems: any[] = [];
-
-  items.forEach((item) =>
-    pickerItems.push({
-      label: item.name.toLowerCase(),
-      value: item.name.toLowerCase(),
-    })
-  );
-
-  return pickerItems;
-};
+import Title from '@ui/components/Title';
 
 const RecipesScreen = ({
   route,
@@ -52,21 +39,19 @@ const RecipesScreen = ({
     setValue([newItems[0]?.value]);
   }, [expireSoon]);
 
-  const { data, error, loading, previousData } = useQuery(GET_RECIPES, {
+  const [loadQuery, { data }] = useLazyQuery(GET_RECIPES, {
     variables: {
       ingredients: value,
     },
   });
 
-  if (loading) {
-    return null;
-  }
+  useEffect(() => {
+    if (value && value.length !== 0) {
+      loadQuery();
+    }
+  }, [value]);
 
-  const result = (data?.recipes ?? previousData?.recipes) || null;
-
-  if (error) {
-    console.error(error.message);
-  }
+  const result = data?.recipes;
 
   DropDownPicker.setListMode('SCROLLVIEW');
 
@@ -74,7 +59,7 @@ const RecipesScreen = ({
     <PageWrapper>
       <Title>{route.name}</Title>
       {result ? (
-        <View>
+        <View style={styles.container}>
           <DropDownPicker
             multiple={true}
             style={styles.dropdown}
@@ -87,7 +72,6 @@ const RecipesScreen = ({
             textStyle={styles.dropdownText}
             containerStyle={[styles.dropdownContainer]}
             dropDownContainerStyle={styles.dropdown}
-            tickIconStyle={{ s: COLORS.WHITE }}
           />
           <View style={{ marginTop: 70 }}>
             <Text
@@ -136,6 +120,9 @@ const styles = StyleSheet.create({
   suggestionText: {
     fontSize: 13,
     marginBottom: 20,
+  },
+  container: {
+    paddingBottom: 210,
   },
 });
 

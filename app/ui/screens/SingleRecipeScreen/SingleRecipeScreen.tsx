@@ -60,8 +60,8 @@ const SingleRecipeScreen = ({
         <View>
           <View>
             <View style={styles.rowDirection}>
-              {formatMealType(result.mealType).map((type) => (
-                <Tag text={type} />
+              {formatMealType(result.mealType).map((type, index) => (
+                <Tag key={index} text={type} />
               ))}
             </View>
             <Text style={styles.title}>{result.label}</Text>

@@ -1,30 +1,31 @@
 import { TYPOGRAPHY } from '@ui/common/typography';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ViewProps } from 'react-native';
 import COLORS from '@ui/theme/color';
+import { TextProps } from 'react-native-paper';
 
-const Title = (props: { children: string }) => {
+const Title = ({ children, style }: TextProps & ViewProps) => {
   return (
-    <View style={styles.titleContainer}>
-      <Text style={styles.title}>{props.children}</Text>
+    <View style={[styles.titleContainer, style]}>
+      <Text style={styles.title}>{children}</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   title: {
-    fontFamily: 'NunitoSans_700Bold',
     fontSize: TYPOGRAPHY.LARGE_TITLE.FONT_SIZE,
     color: COLORS.WHITE,
-    lineHeight: 42,
+    fontWeight: TYPOGRAPHY.HEADLINE.WEIGHT,
   },
   titleContainer: {
     width: '100%',
     height: 42,
-    marginTop: 99,
+    marginTop: 40,
     backgroundColor: 'transparent',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    marginBottom: 15,
   },
 });
 

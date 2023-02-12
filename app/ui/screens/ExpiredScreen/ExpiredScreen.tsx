@@ -3,8 +3,8 @@ import { QUERIES } from '@graphql/queries';
 import { Product } from '../../../types/Product';
 import { CardList } from '@ui/components/CardList';
 import PageWrapper from '@ui/components/containers/PageWrapper';
-import { Title } from 'react-native-paper';
 import { RootTabScreenProps } from '../../../navigation/types';
+import Title from '@ui/components/Title';
 
 const ExpiredScreen = ({ route }: RootTabScreenProps<'Expired'>) => {
   const { GET_PRODUCTS } = QUERIES;
@@ -28,7 +28,7 @@ const ExpiredScreen = ({ route }: RootTabScreenProps<'Expired'>) => {
   return (
     <PageWrapper>
       <Title>{route.name}</Title>
-      <CardList data={result} />
+      <CardList data={{ products: result }} />
     </PageWrapper>
   );
 };

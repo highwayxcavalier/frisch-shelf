@@ -24,7 +24,7 @@ const GET_FOOD_DATA = gql`
 `;
 
 const GET_RECIPES = gql`
-  query GetRecipes($ingredients: [String!]) {
+  query GetRecipes($ingredients: [String!]!) {
     recipes(ingredients: $ingredients) {
       uri
       label
