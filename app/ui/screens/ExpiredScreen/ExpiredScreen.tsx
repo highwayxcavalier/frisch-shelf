@@ -28,7 +28,7 @@ const ExpiredScreen = ({ route }: RootTabScreenProps<'Expired'>) => {
   return (
     <PageWrapper>
       <Title>{route.name}</Title>
-      <CardList data={result} />
+      <CardList data={{ products: result }} />
     </PageWrapper>
   );
 };
