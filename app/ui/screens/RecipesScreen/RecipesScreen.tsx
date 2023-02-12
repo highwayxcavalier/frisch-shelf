@@ -2,7 +2,7 @@ import PageWrapper from '@ui/components/containers/PageWrapper';
 import RecipesList from '@ui/components/RecipesList';
 import { RootTabScreenProps } from 'app/navigation/types';
 import { QUERIES } from '@graphql/queries';
-import { useQuery } from '@apollo/client';
+import { useLazyQuery, useQuery } from '@apollo/client';
 import { Product } from '../../../types/Product';
 import { StyleSheet, Text, View } from 'react-native';
 import COLORS from '@ui/theme/color';
@@ -15,7 +15,6 @@ const RecipesScreen = ({
   route,
   navigation,
 }: RootTabScreenProps<'Recipes'>) => {
-  let result = null;
   const [value, setValue] = useState<string[] | null>(null);
   const [items, setItems] = useState<ItemType<string>[]>([]);
   const [pickerVisible, setPickerVisible] = useState(false);
@@ -40,23 +39,19 @@ const RecipesScreen = ({
     setValue([newItems[0]?.value]);
   }, [expireSoon]);
 
-  if (expireSoon?.products.length !== 0) {
-    const { data, error, loading, previousData } = useQuery(GET_RECIPES, {
-      variables: {
-        ingredients: value,
-      },
-    });
+  const [loadQuery, { data }] = useLazyQuery(GET_RECIPES, {
+    variables: {
+      ingredients: value,
+    },
+  });
 
-    if (loading) {
-      return null;
+  useEffect(() => {
+    if (value && value.length !== 0) {
+      loadQuery();
     }
+  }, [value]);
 
-    result = data?.recipes ?? previousData?.recipes;
-
-    if (error) {
-      console.error(error.message);
-    }
-  }
+  const result = data?.recipes;
 
   DropDownPicker.setListMode('SCROLLVIEW');
 

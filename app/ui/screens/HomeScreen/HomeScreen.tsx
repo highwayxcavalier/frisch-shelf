@@ -4,8 +4,6 @@ import { Header } from '@ui/components/Header';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { CardList } from '@ui/components/CardList';
 import { QUERIES } from '@graphql/queries';
-import { ExpirationTagsEnum } from '@utils/storageTags';
-import { ChipType } from '../../../types/Chips';
 import PageWrapper from '@ui/components/containers/PageWrapper';
 import { RootTabScreenProps } from 'app/navigation/types';
 import { StyleSheet } from 'react-native';
@@ -23,18 +21,7 @@ const HomeScreen = ({ route }: RootTabScreenProps<'Home'>) => {
     return null;
   }
 
-  const result = data.products ?? previousData.products;
-
-  // Remove expire soon tags id the item has expired
-  result.forEach((item: any) => {
-    if (
-      item.tags.includes(ExpirationTagsEnum.EXPIRE_SOON) &&
-      item.tags.includes(ExpirationTagsEnum.EXPIRED)
-    )
-      item.tags.filter(
-        (tag: ChipType) => tag !== ExpirationTagsEnum.EXPIRE_SOON
-      );
-  });
+  const result = data ?? previousData;
 
   if (error) {
     console.error(error.message);
@@ -55,6 +42,7 @@ const HomeScreen = ({ route }: RootTabScreenProps<'Home'>) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: COLORS.BACKGROUND_COLOR,
+    paddingBottom: 30,
   },
   title: {
     marginTop: 0,
