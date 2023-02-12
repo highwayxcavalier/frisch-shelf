@@ -7,10 +7,10 @@ import { QUERIES } from '@graphql/queries';
 import { ExpirationTagsEnum } from '@utils/storageTags';
 import { ChipType } from '../../../types/Chips';
 import PageWrapper from '@ui/components/containers/PageWrapper';
-import { Title } from 'react-native-paper';
 import { RootTabScreenProps } from 'app/navigation/types';
 import { StyleSheet } from 'react-native';
 import COLORS from '@ui/theme/color';
+import Title from '@ui/components/Title';
 
 const HomeScreen = ({ route }: RootTabScreenProps<'Home'>) => {
   const { GET_PRODUCTS } = QUERIES;
@@ -44,7 +44,7 @@ const HomeScreen = ({ route }: RootTabScreenProps<'Home'>) => {
       <SafeAreaView style={styles.container}>
         <Header />
         <PageWrapper>
-          <Title>{route.name}</Title>
+          <Title style={styles.title}>{route.name}</Title>
           <CardList data={result} />
         </PageWrapper>
       </SafeAreaView>
@@ -55,6 +55,9 @@ const HomeScreen = ({ route }: RootTabScreenProps<'Home'>) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: COLORS.BACKGROUND_COLOR,
+  },
+  title: {
+    marginTop: 0,
   },
 });
 

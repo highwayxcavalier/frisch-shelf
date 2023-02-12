@@ -18,6 +18,7 @@ import { ICON_SIZE } from '@ui/common/iconSize';
 import BarcodeScannerModal from '@ui/components/Modals/BarcodeScannerModal';
 import FormInputWrapper from '@ui/components/containers/FormInputWrapper.tsx/FormInputWrapper';
 import CustomButton from '@ui/components/Buttons/Button';
+import Title from '@ui/components/Title';
 interface Props {
   onClose: () => void;
 }
@@ -76,7 +77,9 @@ const ProductForm = ({ onClose }: Props) => {
 
   return (
     <ScrollView>
-      <Text style={styles.title}>Add item</Text>
+      {/* <Text style={styles.title}>Add item</Text>
+       */}
+      <Title style={styles.title}>Add item</Title>
       <View>
         <FormInputWrapper>
           <Text style={styles.sectionTitle}>Name</Text>
@@ -164,9 +167,7 @@ const ProductForm = ({ onClose }: Props) => {
 
 const styles = StyleSheet.create({
   title: {
-    marginVertical: 20,
-    color: COLORS.WHITE,
-    fontSize: TYPOGRAPHY.LARGE_TITLE.FONT_SIZE,
+    marginTop: 0,
   },
   sectionTitle: {
     marginVertical: 10,

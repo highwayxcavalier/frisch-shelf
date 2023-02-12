@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     maxHeight: 140,
     height: '100%',
-    paddingVertical: 20,
+    paddingTop: 20,
     backgroundColor: COLORS.BLACK,
   },
 });

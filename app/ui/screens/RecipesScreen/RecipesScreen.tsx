@@ -1,7 +1,6 @@
 import PageWrapper from '@ui/components/containers/PageWrapper';
 import RecipesList from '@ui/components/RecipesList';
 import { RootTabScreenProps } from 'app/navigation/types';
-import { Title } from 'react-native-paper';
 import { QUERIES } from '@graphql/queries';
 import { useQuery } from '@apollo/client';
 import { Product } from '../../../types/Product';
@@ -10,15 +9,16 @@ import COLORS from '@ui/theme/color';
 import { TYPOGRAPHY } from '@ui/common/typography';
 import DropDownPicker, { ItemType } from 'react-native-dropdown-picker';
 import { useEffect, useState } from 'react';
+import Title from '@ui/components/Title';
 
 const RecipesScreen = ({
   route,
   navigation,
 }: RootTabScreenProps<'Recipes'>) => {
+  let result = null;
   const [value, setValue] = useState<string[] | null>(null);
   const [items, setItems] = useState<ItemType<string>[]>([]);
   const [pickerVisible, setPickerVisible] = useState(false);
-  let result;
 
   const { GET_RECIPES, GET_PRODUCTS } = QUERIES;
   const { data: expireSoon } = useQuery<{ products: Product[] }>(GET_PRODUCTS, {
