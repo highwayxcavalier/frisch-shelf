@@ -39,7 +39,7 @@ const ProductForm = ({ onClose }: Props) => {
   const [addProduct, { loading, error }] = useMutation(ADD_PRODUCT, {
     variables: {
       name: value,
-      quantity: [quantity, measurement].join(' '),
+      quantity: [quantity, measurement]?.join(' '),
       storage,
       expiration_date: format(date, 'dd-MM-yyyy'),
       isExpired: isToday(date),

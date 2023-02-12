@@ -11,19 +11,6 @@ import { TYPOGRAPHY } from '@ui/common/typography';
 import DropDownPicker, { ItemType } from 'react-native-dropdown-picker';
 import { useEffect, useState } from 'react';
 
-const createPickerItems = (items: Product[]) => {
-  const pickerItems: any[] = [];
-
-  items.forEach((item) =>
-    pickerItems.push({
-      label: item.name.toLowerCase(),
-      value: item.name.toLowerCase(),
-    })
-  );
-
-  return pickerItems;
-};
-
 const RecipesScreen = ({
   route,
   navigation,
@@ -31,6 +18,7 @@ const RecipesScreen = ({
   const [value, setValue] = useState<string[] | null>(null);
   const [items, setItems] = useState<ItemType<string>[]>([]);
   const [pickerVisible, setPickerVisible] = useState(false);
+  let result;
 
   const { GET_RECIPES, GET_PRODUCTS } = QUERIES;
   const { data: expireSoon } = useQuery<{ products: Product[] }>(GET_PRODUCTS, {
@@ -52,20 +40,22 @@ const RecipesScreen = ({
     setValue([newItems[0]?.value]);
   }, [expireSoon]);
 
-  const { data, error, loading, previousData } = useQuery(GET_RECIPES, {
-    variables: {
-      ingredients: value,
-    },
-  });
+  if (expireSoon?.products.length !== 0) {
+    const { data, error, loading, previousData } = useQuery(GET_RECIPES, {
+      variables: {
+        ingredients: value,
+      },
+    });
 
-  if (loading) {
-    return null;
-  }
+    if (loading) {
+      return null;
+    }
 
-  const result = (data?.recipes ?? previousData?.recipes) || null;
+    result = data?.recipes ?? previousData?.recipes;
 
-  if (error) {
-    console.error(error.message);
+    if (error) {
+      console.error(error.message);
+    }
   }
 
   DropDownPicker.setListMode('SCROLLVIEW');
@@ -87,7 +77,6 @@ const RecipesScreen = ({
             textStyle={styles.dropdownText}
             containerStyle={[styles.dropdownContainer]}
             dropDownContainerStyle={styles.dropdown}
-            tickIconStyle={{ s: COLORS.WHITE }}
           />
           <View style={{ marginTop: 70 }}>
             <Text
