@@ -59,7 +59,7 @@ const RecipesScreen = ({
     <PageWrapper>
       <Title>{route.name}</Title>
       {result ? (
-        <View>
+        <View style={styles.container}>
           <DropDownPicker
             multiple={true}
             style={styles.dropdown}
@@ -120,6 +120,9 @@ const styles = StyleSheet.create({
   suggestionText: {
     fontSize: 13,
     marginBottom: 20,
+  },
+  container: {
+    paddingBottom: 210,
   },
 });
 
