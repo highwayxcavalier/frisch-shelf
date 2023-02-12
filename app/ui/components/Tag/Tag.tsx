@@ -1,13 +1,13 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ViewProps } from 'react-native';
 import COLORS from '@ui/theme/color';
 
 interface Props {
   text: string;
 }
 
-const Tag = ({ text }: Props) => {
+const Tag = ({ text, style }: Props & ViewProps) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <Text style={styles.text}>{text}</Text>
     </View>
   );
