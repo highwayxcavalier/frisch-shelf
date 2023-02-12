@@ -24,6 +24,7 @@ const RecipesList = ({ data, onCardOpen }: Props) => {
       numColumns={2}
       columnWrapperStyle={styles.columnWrapper}
       contentContainerStyle={styles.contentContainer}
+      keyExtractor={(item, index) => index.toString()}
     />
   );
 };

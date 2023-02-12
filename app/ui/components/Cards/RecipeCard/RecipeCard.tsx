@@ -37,8 +37,8 @@ const RecipeCard = ({
       )}
       <View style={styles.textContainer}>
         <View style={styles.mealTypeContainer}>
-          {formatMealType(mealType).map((type) => (
-            <Tag text={type} />
+          {formatMealType(mealType).map((type, index) => (
+            <Tag key={index} text={type} />
           ))}
         </View>
         <Text style={styles.title}>{title}</Text>
